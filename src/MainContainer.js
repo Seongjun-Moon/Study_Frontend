@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
+import ReactDOM from "react-dom";
 
 class MenuContainer extends Component {
+
+  test(){
+    alert("test")
+  }
+
   login() {
-    let headers = {
-      authorization: "JWT fefege..",
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-    };
     const send_param = {
       loginId: "as",
       loginPw: "df",
@@ -21,22 +21,35 @@ class MenuContainer extends Component {
       }
     });
   }
+  
+  movieSearch(){
+    axios.post("http://localhost:7777/movieSearch/search" ).then((res) => {
+      //axios.post("http://192.168.35.163:7777/movieSearch/search" ).then((res) => {
+      if (res.data) {
+
+        const array = [{img : res.data.img_data[0].image_url, name: res.data.movie_data[0].movie}]
+        
+        const temp = array.map((item, index) => {
+          return( <li key={index}> <img src={item.img} height="500px" alt=""/> <br/> <strong>{item.name}</strong></li> )
+        })
+
+        ReactDOM.render(<ol>{temp}</ol>, document.getElementById("movie"))
+        
+      } else {
+        alert("false");
+      }
+    });
+  }
   render() {
     return (
       <div>
         <div>
-          <h1>영화 찾기</h1>
+          <h1>영화 검색 크롤링</h1>
           <div>
-            <input ref={(ref) => (this.loginId = ref)}></input>
-            <input ref={(ref) => (this.loginPw = ref)}></input>
-            <button onClick={this.login}>로그인</button>
+            <button onClick={this.movieSearch}>영화 찾기</button>
           </div>
-
-          <ul>
-            <li>영화</li>
-            <li>Post</li>
-            <li>Contact</li>
-          </ul>
+          <br/>
+          <div id="movie"></div>
         </div>
       </div>
     );

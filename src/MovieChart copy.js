@@ -1,27 +1,13 @@
 import React, { Component } from "react";
-import axios from "axios";
 import ReactDOM from "react-dom";
+import axios from "axios";
 
-class MenuContainer extends Component {
+class MovieChart extends Component {
 
   test(){
-    alert("test")
+    alert("test2")
   }
 
-  login() {
-    const send_param = {
-      loginId: "as",
-      loginPw: "df",
-    };
-    axios.post("http://localhost:8080/login", send_param).then((res) => {
-      if (res.data) {
-        alert(res.data);
-      } else {
-        alert("false");
-      }
-    });
-  }
-  
   movieSearch(){
     axios.post("http://localhost:7777/movieSearch/search" ).then((res) => {
       //axios.post("http://192.168.35.163:7777/movieSearch/search" ).then((res) => {
@@ -55,4 +41,4 @@ class MenuContainer extends Component {
     );
   }
 }
-export default MenuContainer;
+export default MovieChart;

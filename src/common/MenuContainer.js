@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import MovieChart from './MovieChart';
+import MovieChart from '../movie/MovieChart';
 
 class MenuContainer extends Component {
 

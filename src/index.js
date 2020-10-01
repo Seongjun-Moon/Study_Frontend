@@ -1,4 +1,4 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import MenuContainer from "./MenuContainer";
+import MenuContainer from "./common/MenuContainer";
 ReactDOM.render(<MenuContainer />, document.querySelector("#container"));

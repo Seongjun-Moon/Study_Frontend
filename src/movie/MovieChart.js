@@ -31,7 +31,7 @@ class MovieChart extends Component {
     });
   }
 
-  test(){
+  move(){
     alert('3')
   }
 
@@ -52,11 +52,12 @@ class MovieChart extends Component {
     const movieList = this.state.searchData.map((searchData,index) => (<li key={index} style={movieStyle} > <img src={searchData.image_url} height="480px" alt=""/> <br/> <strong>{index+1}위 {searchData.movie}</strong></li>))
     return (
       <div style={backColor}>
-        <div style={divStyle}>
+        <div style={divStyle} onClick={this.move}>
           <img style = {headStyle} src="http://img.cgv.co.kr/R2014/images/title/h2_cultureplex.png" alt="CULTUREPLEX" ></img>
           <br />
-          {movieList}
+          <p> {movieList} </p>
         </div>
+
       </div>
     );
   }

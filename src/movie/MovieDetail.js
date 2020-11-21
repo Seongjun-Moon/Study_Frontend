@@ -1,13 +1,17 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class MovieDetail extends Component {
-  componentDidMount() {
-    alert('2')
+  // componentDidMount() {
+  //   alert('2')
+  // }
+
+  MovieDetail(){
+    alert("디테일")
   }
 
   render() {
     return (
-      <div>1</div>
+      <div>3</div>
     );
   }
 }

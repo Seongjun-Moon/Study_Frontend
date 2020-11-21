@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
+import config from "../config"
 
 class MovieChart extends Component {
   state = { searchData: [] };
 
   componentDidMount() {
-    axios.post("http://localhost:7777/movieSearch/search").then((res) => {
-      //axios.post("http://192.168.35.163:7777/movieSearch/search" ).then((res) => {
+    axios.post(config.url+"/movie/search").then((res) => {
       if (res.data) {
         console.log(res.data);
         const searchResults = res.data.img_data;
@@ -24,7 +24,6 @@ class MovieChart extends Component {
         });
         console.log(this.state.searchData);
 
-        //const array = [{img : res.data.img_data[0].image_url, name: res.data.movie_data[0].movie}]
       } else {
         alert("false");
       }
@@ -32,7 +31,6 @@ class MovieChart extends Component {
   }
 
   move(){
-    alert('3')
   }
 
   render() {
@@ -52,12 +50,11 @@ class MovieChart extends Component {
     const movieList = this.state.searchData.map((searchData,index) => (<li key={index} style={movieStyle} > <img src={searchData.image_url} height="480px" alt=""/> <br/> <strong>{index+1}위 {searchData.movie}</strong></li>))
     return (
       <div style={backColor}>
-        <div style={divStyle} onClick={this.move}>
+        <div style={divStyle}>
           <img style = {headStyle} src="http://img.cgv.co.kr/R2014/images/title/h2_cultureplex.png" alt="CULTUREPLEX" ></img>
           <br />
           <p> {movieList} </p>
         </div>
-
       </div>
     );
   }

@@ -6,6 +6,7 @@ class MovieChart extends Component {
   state = { searchData: [] };
 
   componentDidMount() {
+
     axios.post(config.url+"/movie/search").then((res) => {
       if (res.data) {
         console.log(res.data);

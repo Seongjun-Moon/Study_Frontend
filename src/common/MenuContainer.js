@@ -6,15 +6,15 @@ import config from "../config"
 class MenuContainer extends Component {
 
   componentDidMount() {
-    if(this.state.loginState === false){
-      this.setState({
-        loginText : '로그아웃'
-      })
-    }else{
-      this.setState({
-        loginText : '로그인'
-      })
-    }
+    // if(this.state.loginState === false){
+    //   this.setState({
+    //     loginText : '로그아웃'
+    //   })
+    // }else{
+    //   this.setState({
+    //     loginText : '로그인'
+    //   })
+    // }
   }
   state = {
     memId : "",

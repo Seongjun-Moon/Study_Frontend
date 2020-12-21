@@ -2,25 +2,28 @@ import React, { Component } from "react";
 import MovieChart from '../movie/MovieChart';
 import axios from "axios";
 import config from "../config"
+import { observable, action} from "mobx";
+import { observer, inject } from "mobx-react";
 
+@inject("memberStore")
+@observer
 class MenuContainer extends Component {
 
-  componentDidMount() {
-    // if(this.state.loginState === false){
-    //   this.setState({
-    //     loginText : '로그아웃'
-    //   })
-    // }else{
-    //   this.setState({
-    //     loginText : '로그인'
-    //   })
-    // }
-  }
   state = {
-    memId : "",
-    memPw : "",
-    loginText : "로그인",
-    loginState : false
+    loginText : '로그인',
+    memId : '',
+    memPw : ''
+  }
+  componentDidMount() {
+    if(this.state.loginState === false){
+      this.setState({
+        loginText : '로그아웃'
+      })
+    }else{
+      this.setState({
+        loginText : '로그인'
+      })
+    }
   }
   login =()=>{
     const send_param = {
@@ -40,20 +43,14 @@ class MenuContainer extends Component {
     });
   }
 
-  join(){
-    alert("회원가입")
-    axios.post("http://localhost:7777/member/login").then((res) => {
-
-    });
-  }
-
   render() {
+    //const { memberStore } = this.props
+
     return (
-      <div>
-        <button onClick={this.join}> 회원가입 </button>
-        <button onClick={this.login} > {this.state.loginText}  </button>
-        <input ref={(ref) => (this.memId = ref)} ></input>
-        <input ref={(ref) => (this.memPw = ref)} ></input>
+      <div id="root">
+        <button onClick={() => {this.login()}}> {this.state.loginText} </button>
+        <input name="memId" placeholder ="ID" ref={(ref) => (this.memId = ref)} />
+        <input name="memPw" placeholder ="PW" ref={(ref) => (this.memPw = ref)} />
         <MovieChart></MovieChart>
       </div>
     );
